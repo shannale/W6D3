@@ -39,10 +39,9 @@ class Artwork < ApplicationRecord
 
     def self.artworks_for_user_id(user_id)
         Artwork 
-            .select(*)
             .joins(:artwork_shares)
-            .where('artist.id = user.id')
-            .where('artwork_shares.viewer_id = user.id') 
+            .where('(artist_id = :user_id) OR (artwork_shares.viewer_id = :user_id)', user_id: user_id)
+            # .or("artwork_shares.viewer_id = #{user_id}") 
     end 
 
 end
