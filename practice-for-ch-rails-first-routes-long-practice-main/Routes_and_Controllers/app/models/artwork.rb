@@ -36,4 +36,11 @@ class Artwork < ApplicationRecord
     through: :artwork_shares,
     source: :viewer
 
+
+    def self.artworks_for_user_id(user_id)
+        Artwork 
+            .select(*)
+            .where('artist.id = user.id') 
+    end 
+
 end
