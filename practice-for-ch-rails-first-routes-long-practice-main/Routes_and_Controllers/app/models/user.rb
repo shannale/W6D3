@@ -12,7 +12,7 @@
 #  index_users_on_username  (username) UNIQUE
 #
 class User < ApplicationRecord
-    validates :username, presense: true, uniqueness: true 
+    validates :username, presence: true, uniqueness: true 
 
     has_many :artworks,
     foreign_key: :artist_id, 
