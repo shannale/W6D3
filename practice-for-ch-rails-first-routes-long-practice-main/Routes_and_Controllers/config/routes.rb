@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :edit]
 
   resources :artworks, except: [:new, :edit]
+
+  resources :artwork_shares, only: [:create, :destroy] 
   
   # get 'users', to: 'users#index', as: 'users'
   # post 'users', to: 'users#create'

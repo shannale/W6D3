@@ -1,13 +1,14 @@
-class ArtworkShareController < ApplicationController
+class ArtworkSharesController < ApplicationController
     def index 
     end 
 
     def create
+        # debugger
         @share = ArtworkShare.new(artwork_shares_params)
         if @share.save 
-            render json: @artwork_share
+            render json: @share
         else 
-            render json: @artwork_share.errors.full_messages, status: :unprocessable_entity
+            render json: @share.errors.full_messages, status: :unprocessable_entity
         end 
     end 
 
