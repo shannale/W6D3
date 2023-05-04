@@ -31,7 +31,7 @@ class ArtworksController < ApplicationController
     def destroy 
         @artwork = Artwork.find(params[:id])
         @artwork.destroy 
-        render json: @user 
+        render json: @artwork
     end 
 
     private 
