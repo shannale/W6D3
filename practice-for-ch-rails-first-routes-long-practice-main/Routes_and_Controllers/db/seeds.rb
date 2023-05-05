@@ -6,11 +6,12 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-
+Comment.destroy_all
 ArtworkShare.destroy_all
 Artwork.destroy_all
 User.destroy_all
 
+ApplicationRecord.connection.reset_pk_sequence!('comments')
 ApplicationRecord.connection.reset_pk_sequence!('users')
 ApplicationRecord.connection.reset_pk_sequence!('artworks')
 ApplicationRecord.connection.reset_pk_sequence!('artwork_shares')
@@ -22,3 +23,6 @@ artwork_1 = Artwork.create({title: "Oliver", image_url: "meow.com", artist_id: u
 artwork_2 = Artwork.create({title: "Stella", image_url: "bork.com", artist_id: user_2.id})
 artshare_1 = ArtworkShare.create!({artwork_id: artwork_1.id, viewer_id: user_2.id})
 artshare_2 = ArtworkShare.create!({artwork_id: artwork_2.id, viewer_id: user_1.id})
+
+comment_1 = Comment.create!({author_id: user_1.id, artwork_id: artwork_1.id, body: "This is great!!!" })
+comment_2 = Comment.create!({author_id: user_2.id, artwork_id: artwork_1.id, body: "No it's not!!!" })

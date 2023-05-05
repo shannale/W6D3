@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: create_comments
+# Table name: comments
 #
 #  id         :bigint           not null, primary key
 #  body       :text             not null
@@ -11,15 +11,15 @@
 #
 # Indexes
 #
-#  index_create_comments_on_artwork_id  (artwork_id)
-#  index_create_comments_on_author_id   (author_id)
+#  index_comments_on_artwork_id  (artwork_id)
+#  index_comments_on_author_id   (author_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (artwork_id => artworks.id)
 #  fk_rails_...  (author_id => users.id)
 #
-class CreateComment < ApplicationRecord
+class Comment < ApplicationRecord
     belongs_to :author, 
     foreign_key: :author_id,
     class_name: :User
