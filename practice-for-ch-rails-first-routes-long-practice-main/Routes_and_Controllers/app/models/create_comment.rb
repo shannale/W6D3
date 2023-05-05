@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: create_comments
+#
+#  id         :bigint           not null, primary key
+#  body       :text             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  artwork_id :bigint           not null
+#  author_id  :bigint           not null
+#
+# Indexes
+#
+#  index_create_comments_on_artwork_id  (artwork_id)
+#  index_create_comments_on_author_id   (author_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (artwork_id => artworks.id)
+#  fk_rails_...  (author_id => users.id)
+#
+class CreateComment < ApplicationRecord
+    belongs_to :author, 
+    foreign_key: :author_id,
+    class_name: :User
+
+    belongs_to :artwork,
+    foreign_key: :artwork_id,
+    class_name: :Artwork
+end

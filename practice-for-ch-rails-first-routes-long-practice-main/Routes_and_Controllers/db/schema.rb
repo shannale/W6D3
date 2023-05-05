@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_174834) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_233842) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_174834) do
     t.index ["image_url"], name: "index_artworks_on_image_url", unique: true
   end
 
+  create_table "create_comments", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.bigint "artwork_id", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artwork_id"], name: "index_create_comments_on_artwork_id"
+    t.index ["author_id"], name: "index_create_comments_on_author_id"
+  end
+
   create_table "user_and_emails", force: :cascade do |t|
     t.string "users", null: false
     t.string "emails", null: false
@@ -50,4 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_174834) do
   add_foreign_key "artwork_shares", "artworks"
   add_foreign_key "artwork_shares", "users", column: "viewer_id"
   add_foreign_key "artworks", "users", column: "artist_id"
+  add_foreign_key "create_comments", "artworks"
+  add_foreign_key "create_comments", "users", column: "author_id"
 end

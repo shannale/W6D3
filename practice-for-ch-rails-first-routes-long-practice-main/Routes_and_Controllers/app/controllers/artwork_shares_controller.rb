@@ -1,6 +1,4 @@
 class ArtworkSharesController < ApplicationController
-    def index 
-    end 
 
     def create
         # debugger

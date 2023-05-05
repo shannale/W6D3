@@ -29,12 +29,17 @@ class Artwork < ApplicationRecord
 
     has_many :artwork_shares, 
     foreign_key: :artwork_id,
-    class_name: :ArtworkShare,
-    dependent: :destroy
+    dependent: :destroy, 
+    inverse_of: :artwork
 
     has_many :shared_viewers,
     through: :artwork_shares,
     source: :viewer
+
+    has_many :comments, 
+    foreign_key: :artwork_id,
+    inverse_of: :artwork,
+    dependent: :destroy
 
 
     def self.artworks_for_user_id(user_id)
